@@ -1,0 +1,13 @@
+#!/usr/bin/env ruby
+
+argv = ARGV
+
+lib_name = 'libmesh.so'
+
+lib_dir = File.expand_path("../lib/", File.dirname(__FILE__))
+if File.exist?("#{lib_dir}/#{lib_name}")
+  puts 'Using mesh as an allocator'
+  ENV.store('LD_PRELOAD', "#{lib_dir}/#{lib_name}")
+end
+
+Kernel.exec(*argv)
