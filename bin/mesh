@@ -1,6 +1,23 @@
 #!/usr/bin/env ruby
 
+def usage
+  puts <<END
+  Usage: mesh [ARGS]...
+
+  Options:
+    -v        verbose mode
+    --version show version
+END
+  exit
+end
+
 argv = ARGV
+
+usage if argv.length.zero?
+if argv[0] == '--version'
+  require 'mesh/version'
+  puts "mesh-rb version #{Mesh.VERSION}"
+end
 
 lib_name = 'libmesh.so'
 
